@@ -26,7 +26,8 @@ let rules = [
     "shippingDetails.city": "required",
     "shippingDetails.state": "required",
     "shippingDetails.zipCode": "required|alhanumeric|max:10"
-]`
+]
+```
 
 You can validate your rules with the `isValid` class method. It'll return the fields that are erroring in an array or nil if the fields are valid.
 
@@ -34,7 +35,8 @@ You can validate your rules with the `isValid` class method. It'll return the fi
 let errors = SRFormValidator.isValid(rules, self)
 if(errors != nil) {
     println(valid)
-}`    
+}
+```
 
 ## Rules
 
