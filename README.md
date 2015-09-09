@@ -33,7 +33,7 @@ You can validate your rules with the `isValid` class method. It'll return the fi
 There are currently 5 rules that can be used to validate your fields. Multiple rules can be used in tandem when separated with a `|`. Some rules use a `:` to include arguments.
 
 Rule | Effect
-=================
+-----|-------
 `required` | Checks if the field is `nil` or a blank string.
 `email`    | Checks if the field is a valid email address using regex.
 `alphanumeric` | Checks if the field only contains a-z, A-Z, and 0-9 using regex.
