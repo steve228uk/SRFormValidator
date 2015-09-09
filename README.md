@@ -10,23 +10,25 @@ First, import `SRFormValidator` where you need it.
 
 Next, write your rules as a Dictionary. The key should be a keyPath to your field's values and the rules should be your dictionary's value. As it fetches the value using key path you can use variables or dictionaries freely. Below is an example using several rules and two dictionaries.
 
-    let rules = [
-        "personalDetails.emailAddress": "required|email",
-        "personalDetails.firstName": "required",
-        "personalDetails.lastName": "required",
-        "personalDetails.phone": "required|min:10|max:30",
-        "shippingDetails.address": "required",
-        "shippingDetails.city": "required",
-        "shippingDetails.state": "required",
-        "shippingDetails.zipCode": "required|alhanumeric|max:10"
-    ]
+```swift
+let rules = [
+    "personalDetails.emailAddress": "required|email",
+    "personalDetails.firstName": "required",
+    "personalDetails.lastName": "required",
+    "personalDetails.phone": "required|min:10|max:30",
+    "shippingDetails.address": "required",
+    "shippingDetails.city": "required",
+    "shippingDetails.state": "required",
+    "shippingDetails.zipCode": "required|alhanumeric|max:10"
+]`
 
 You can validate your rules with the `isValid` class method. It'll return the fields that are erroring in an array or nil if the fields are valid.
 
-    let errors = SRFormValidator.isValid(rules, self)
-    if(errors != nil) {
-        println(valid)
-    }
+```swift
+let errors = SRFormValidator.isValid(rules, self)
+if(errors != nil) {
+    println(valid)
+}`    
 
 ## Rules
 
@@ -42,5 +44,6 @@ Rule | Effect
 
 ## Notes
 
+* **Swift 1.2 only. Tested in Xcode 6.3**
 * Can only currently validate strings. It'll probably break if you try anything else but you can give it a go. Min and Max will try to parse ints.
 * Messages aren't return, only that the field has failed.
