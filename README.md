@@ -2,6 +2,12 @@
 
 A quick and dirty form validator in Swift. Inspired by [Laravel](http://laravel.com/docs/5.1/validation)
 
+## Installation
+
+Use cocoapods or install manually.
+
+`pod 'SRFormValidator'`
+
 ## Usage
 
 First, import `SRFormValidator` where you need it.
