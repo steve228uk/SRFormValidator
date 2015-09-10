@@ -65,8 +65,8 @@ public class SRFormValidator {
                         error = true
                     }
                 default:
-                    let comps = field.componentsSeparatedByString(":")
-                    if field.rangeOfString("min") != nil  {
+                    let comps = r.componentsSeparatedByString(":")
+                    if r.rangeOfString("min") != nil  {
                         if !isValidMinField(field, length: comps[1].toInt()!) {
                             error = true
                         }
