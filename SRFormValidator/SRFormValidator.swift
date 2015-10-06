@@ -17,10 +17,10 @@ public class SRFormValidator {
     /**
     Initialise a new instance with rules and target
     
-    :param: rules The dictionary of rules used to validate
-    :param: target The target class where the fields are stored
+    - parameter rules: The dictionary of rules used to validate
+    - parameter target: The target class where the fields are stored
     
-    :returns: Instance of `SRFormValidator`
+    - returns: Instance of `SRFormValidator`
     */
     init(rules: [String:String], target: AnyObject) {
         self.rules = rules
@@ -30,10 +30,10 @@ public class SRFormValidator {
     /**
     Validate an dictionary of form fields against a set of rules.
     
-    :param: rules The dictionary of rules used to validate
-    :param: target The target class where the fields are stored
+    - parameter rules: The dictionary of rules used to validate
+    - parameter target: The target class where the fields are stored
     
-    :returns: Bool
+    - returns: Bool
     */
     public class func isValid(rules: [String:String], _ target: AnyObject) -> [String]? {
         let validator = SRFormValidator(rules: rules, target: target)
@@ -43,7 +43,7 @@ public class SRFormValidator {
     /**
     Validate the rules
     
-    :returns: An array of fields that have errored or nil
+    - returns: An array of fields that have errored or nil
     */
     func validate() -> [String]? {
         
@@ -67,11 +67,11 @@ public class SRFormValidator {
                 default:
                     let comps = r.componentsSeparatedByString(":")
                     if r.rangeOfString("min") != nil  {
-                        if !isValidMinField(field, length: comps[1].toInt()!) {
+                        if !isValidMinField(field, length: Int(comps[1])!) {
                             error = true
                         }
                     } else {
-                        if !isValidMaxField(field, length: comps[1].toInt()!) {
+                        if !isValidMaxField(field, length: Int(comps[1])!) {
                             error = true
                         }
                     }
@@ -92,9 +92,9 @@ public class SRFormValidator {
     /**
     Is the current field valid?
     
-    :param: keyPath The keyPath to the field on our target
+    - parameter keyPath: The keyPath to the field on our target
     
-    :returns: Bool
+    - returns: Bool
     */
     func isValidRequiredField(keyPath: String) -> Bool {
         let f = field(keyPath)
@@ -104,9 +104,9 @@ public class SRFormValidator {
     /**
     Checks if the email is valid with a regular expression
     
-    :param: keyPath The keyPath to the field
+    - parameter keyPath: The keyPath to the field
     
-    :returns: Bool
+    - returns: Bool
     */
     func isValidEmailField(keyPath: String) -> Bool {
         let f = field(keyPath)
@@ -122,9 +122,9 @@ public class SRFormValidator {
     /**
     Checks if the field is a valid alphanumeric value with a regular expression
     
-    :param: keyPath The keyPath to the field
+    - parameter keyPath: The keyPath to the field
     
-    :returns: Bool
+    - returns: Bool
     */
     func isValidAlphaNumericField(keyPath: String) -> Bool {
         let f = field(keyPath)
@@ -140,19 +140,19 @@ public class SRFormValidator {
     /**
     Checks if the field has a character length >= to the rule. Or if the field can be parsed as an integer it'll check if that value is >= that set in the rule.
     
-    :param: keyPath The keyPath to the field
-    :param: length  The length set in the rule
+    - parameter keyPath: The keyPath to the field
+    - parameter length:  The length set in the rule
     
-    :returns: Bool
+    - returns: Bool
     */
     func isValidMinField(keyPath: String, length: Int) -> Bool {
         let f = field(keyPath)
         
         if let string = f {
-            if let int = string.toInt() {
+            if let int = Int(string) {
                 return int >= length
             } else {
-                count(string) >= length
+                string.characters.count >= length
             }
         }
         
@@ -162,19 +162,19 @@ public class SRFormValidator {
     /**
     Checks if the field has a character length <= to the rule. Or if the field can be parsed as an integer it'll check if that value is <= that set in the rule.
     
-    :param: keyPath The keyPath to the field
-    :param: length  The length set in the rule
+    - parameter keyPath: The keyPath to the field
+    - parameter length:  The length set in the rule
     
-    :returns: Bool
+    - returns: Bool
     */
     func isValidMaxField(keyPath: String, length: Int) -> Bool {
         let f = field(keyPath)
         
         if let string = f {
-            if let int = string.toInt() {
+            if let int = Int(string) {
                 return int <= length
             } else {
-                count(string) <= length
+                string.characters.count <= length
             }
         }
         
@@ -186,22 +186,22 @@ public class SRFormValidator {
     /**
     Checks the field against a regex pattern
     
-    :param: regex The regext pattern to check agains
-    :param: field The field we'll be checking
+    - parameter regex: The regext pattern to check agains
+    - parameter field: The field we'll be checking
     
-    :returns: Bool
+    - returns: Bool
     */
     func checkRegexPattern(pattern: String, field: String) -> Bool {
-        let regex = NSRegularExpression(pattern: pattern, options: .CaseInsensitive, error: nil)!
-        return regex.firstMatchInString(field, options: nil, range: NSMakeRange(0, count(field))) != nil
+        let regex = try! NSRegularExpression(pattern: pattern, options: .CaseInsensitive)
+        return regex.firstMatchInString(field, options: [], range: NSMakeRange(0, field.characters.count)) != nil
     }
     
     /**
     Convert our keyPath into an actual value
     
-    :param: keyPath The path to our field
+    - parameter keyPath: The path to our field
     
-    :returns: The value grabbed from the field
+    - returns: The value grabbed from the field
     */
     func field(keyPath: String) -> String? {
         return target.valueForKeyPath(keyPath) as? String

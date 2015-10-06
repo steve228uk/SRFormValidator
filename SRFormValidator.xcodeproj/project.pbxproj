@@ -101,6 +101,8 @@
 		28F247AD1BA053F600A7A84F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Cocoon Development Ltd";
 				TargetAttributes = {
@@ -291,6 +293,7 @@
 				28F247CE1BA053F600A7A84F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
