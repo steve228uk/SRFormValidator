@@ -52,6 +52,6 @@ Rule | Effect
 
 ## Notes
 
-* **Swift 1.2 only. Tested in Xcode 6.3**
+* **Swift 2.0 only.**
 * Can only currently validate strings. It'll probably break if you try anything else but you can give it a go. Min and Max will try to parse ints.
 * Messages aren't return, only that the field has failed.
