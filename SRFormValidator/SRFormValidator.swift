@@ -110,7 +110,7 @@ public class SRFormValidator {
     */
     func isValidEmailField(keyPath: String) -> Bool {
         let f = field(keyPath)
-        let pattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+        let pattern = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
         
         if let string = f {
             return checkRegexPattern(pattern, field: string) || string == ""
